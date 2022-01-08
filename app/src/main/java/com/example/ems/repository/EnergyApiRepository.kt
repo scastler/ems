@@ -23,4 +23,15 @@ class EnergyApiRepository(
       }
     }
   }
+
+  override suspend fun getHistoryData(): List<ActivePowerDTO> {
+    return withContext(ioDispatcher) {
+      val liveData = service.historicActivePower()
+      if (liveData.isSuccessful && liveData.body() != null) {
+        liveData.body()!!
+      } else {
+        throw IOException()
+      }
+    }
+  }
 }

@@ -7,4 +7,7 @@ interface EnergyService {
 
   @GET("live_data.json")
   suspend fun liveData(): Response<EnergyDTO>
+
+  @GET("historic_data.json")
+  suspend fun historicActivePower(): Response<List<ActivePowerDTO>>
 }
