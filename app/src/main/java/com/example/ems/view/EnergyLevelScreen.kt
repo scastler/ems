@@ -5,7 +5,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.example.ems.repository.ActivePowerDTO
+import com.example.ems.entity.ActivePower
 import com.example.ems.repository.EnergyDTO
 
 
@@ -15,7 +15,7 @@ fun EnergyLevelScreen(
   quasarEnergyDischarged: Float,
   quasarEnergyCharged: Float,
   energyData: EnergyDTO? = null,
-  activePower: List<ActivePowerDTO>? = null
+  activePower: ActivePower? = null
 ) {
   Column() {
     Text(text = "Discharged -> $quasarEnergyDischarged kWh")

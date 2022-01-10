@@ -52,11 +52,13 @@ fun NavigationComponent(
         3.4F,
         5.4F,
         state.energyData,
-        state.activePowerList
+        state.activePower
       )
     }
     composable("detail") {
-      ActivePowerChartsScreen()
+      if (state.activePower != null) {
+        ActivePowerChartsScreen(state.activePower)
+      }
     }
   }
 }

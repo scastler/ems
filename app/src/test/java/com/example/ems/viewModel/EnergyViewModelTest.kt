@@ -54,7 +54,7 @@ class EnergyViewModelTest {
     val energyViewModel = EnergyViewModel(getEnergyDataUseCase, getActivePowerUseCase)
     assertEquals(energyViewModel.state.value.error, null)
     assertEquals(energyViewModel.state.value.energyData, energyData)
-    assertEquals(energyViewModel.state.value.activePowerList, activePoserList)
+    assertEquals(energyViewModel.state.value.activePower, activePoserList)
   }
 
   @ExperimentalCoroutinesApi
@@ -71,6 +71,6 @@ class EnergyViewModelTest {
     val energyViewModel = EnergyViewModel(getEnergyDataUseCase, getActivePowerUseCase)
     assertEquals(energyViewModel.state.value.error, error)
     assertEquals(energyViewModel.state.value.energyData, null)
-    assertEquals(energyViewModel.state.value.activePowerList, activePoserList)
+    assertEquals(energyViewModel.state.value.activePower, activePoserList)
   }
 }

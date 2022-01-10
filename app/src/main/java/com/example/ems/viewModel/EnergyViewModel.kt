@@ -2,7 +2,7 @@ package com.example.ems.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ems.repository.ActivePowerDTO
+import com.example.ems.entity.ActivePower
 import com.example.ems.repository.EnergyDTO
 import com.example.ems.useCase.GetActivePowerUseCase
 import com.example.ems.useCase.GetEnergyDataUseCase
@@ -46,7 +46,7 @@ class EnergyViewModel(
         getActivePowerUseCase.invoke()
       }.onSuccess { activePower ->
         _state.update {
-          it.copy(activePowerList = activePower)
+          it.copy(activePower = activePower)
         }
       }.onFailure { error ->
         _state.update {
@@ -59,7 +59,7 @@ class EnergyViewModel(
 
 data class EnergyState(
   val energyData: EnergyDTO? = null,
-  val activePowerList: List<ActivePowerDTO>? = null,
+  val activePower: ActivePower? = null,
   val loading: Boolean = false,
   val error: Throwable? = null
 )
