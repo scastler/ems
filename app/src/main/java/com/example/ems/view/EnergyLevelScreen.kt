@@ -1,9 +1,17 @@
 package com.example.ems.view
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.ems.entity.ActivePower
 import com.example.ems.repository.EnergyDTO
@@ -17,9 +25,9 @@ fun EnergyLevelScreen(
   energyData: EnergyDTO? = null,
   activePower: ActivePower? = null
 ) {
-  Column() {
-    Text(text = "Discharged -> $quasarEnergyDischarged kWh")
-    Text(text = "Charged -> $quasarEnergyCharged kWh")
+  Column {
+    QuasarLevelItem(title = "Quasar discharged", level = quasarEnergyDischarged)
+    QuasarLevelItem(title = "Quasar charged", level = quasarEnergyCharged)
 
     if (energyData != null) {
       LiveDataWidget(energyData)
@@ -28,6 +36,39 @@ fun EnergyLevelScreen(
       Button(onClick = { navController.navigate("detail") }) {
         Text(text = "Go to detail")
       }
+    }
+  }
+}
+
+@Composable
+fun QuasarLevelItem(
+  title: String,
+  level: Float
+) {
+  Card(
+    shape = RoundedCornerShape(4.dp),
+    elevation = 12.dp,
+    modifier = Modifier
+      .padding(12.dp)
+      .fillMaxWidth()
+  ) {
+    Column {
+      Text(
+        text = title,
+        style = MaterialTheme.typography.h6,
+        textAlign = TextAlign.Left,
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(12.dp)
+      )
+      Text(
+        text = "$level kWh",
+        style = MaterialTheme.typography.body1,
+        textAlign = TextAlign.Left,
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(12.dp)
+      )
     }
   }
 }
